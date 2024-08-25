@@ -1,0 +1,145 @@
+*
+{
+    /* background: black; */
+    /* background: #2D2D2D; */
+    font-family: Snell Roundhand, cursive;
+}
+body {
+    /* color: white;
+    background: black; */
+    /* font-family: cursive; */
+    /* font-family: Arial, Arial, system-ui;
+    text-align: center;
+    font-size: 15px; */
+    /* line-height: 17px; */
+    font-size: 22px;
+    color: white;
+    font-family: Helvetica, Arial, system-ui;
+    /* padding: 10px 15px 10px 15px; */
+}
+p {
+  font-size: 18px;
+  color: rgb(64, 206, 250);
+  font-family: Helvetica, Arial, system-ui;
+}
+
+.container{
+    display:flex;
+    flex-wrap: wrap;
+    /* height:100vh;
+    width: 100vw; */
+}
+.col1{
+    width:280px;
+  }
+.col2{
+    width:10%;
+    text-align: center;
+}
+.col3{
+  width:30px;
+  float: left;
+  /* text-align: center;
+  font-size: 15px; */
+}
+#api-frame {
+    display: block;
+    position: absolute;
+    /* left: 0px; */
+    left: 50px;
+    /* width:calc(100%-1px); */
+    width: 90%;
+    /* padding: 10px; */
+    height: 1000px;
+    border: 0;
+    top: 320px;
+}
+#sectionImage {
+  position: absolute;
+  height: 180px;
+  /* background: black; */
+  text-align: center;
+  top: 50px;
+  width: 99%;
+}
+#cacheHaut {
+  position: absolute;
+  height: 10px;
+  /* background: black; */
+  text-align: center;
+  top: 350px;
+  width: 99%;
+}
+* {
+  /* background: black; */
+  box-sizing:border-box;
+}
+#bagniere {
+  position: absolute;
+  /* height: 200px; */
+  height: 50px;
+  width: 99%;
+  background: black;
+  text-align: center;
+  top: 0px;
+}
+#api-frameRect {
+  display: block;
+  position: absolute;
+  /* left: 0px; */
+  left: 50px;
+  width: 90%;
+  /* padding: 10px; */
+  height: 700px;
+  border: 0;
+  top: 550px;
+}
+#cacheBas {
+  position: absolute;
+  height: 65px;
+  top: 1260px;
+  float: right;
+  width: 99%;
+  font-size: 14px;
+  /* color: rgb(206, 26, 206); */
+  text-align: center;
+  /* padding: 15px; */
+}
+#cacheBasRect {
+  position: absolute;
+  height: 65px;
+  top: 1200px;
+  float: right;
+  width: 100%;
+  font-size: 14px;
+  color: rgb(180, 177, 177);
+  text-align: center;
+  padding: 15px;
+}
+#popup {
+  display: none; 
+  position: absolute;
+  top: 395px;
+  background-color: black; 
+  padding: 1px 15px 1px 15px;
+  border: 1px solid #4c3416; 
+  border-radius: 5px;
+}
+.button-container { 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Espace entre les boutons */
+  margin-top: 50px; /* Espace pour le titre */
+}
+.button-container button {
+  flex: 1 1 auto; /* Les boutons prennent la largeur disponible */
+  outline: none;
+  border: none;
+}
+.title {
+  position: absolute;
+  top: 10px; /* Ajustez cette valeur pour décaler verticalement */
+  left: 150px; /* Ajustez cette valeur pour décaler horizontalement */
+  font-size: 24px;
+  font-weight: bold;
+}
