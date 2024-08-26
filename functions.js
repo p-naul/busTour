@@ -60,7 +60,7 @@ function moveToZero(ID) {
     matrice = matrix.local;
     // window.console.log('matrix', matrice);
     api.setMatrix(ID-2, matrice, function(err, matrix) {});
-    api.setCameraLookAt([0, -1, 1], [0, 0, 0], 2, function(err) {});
+    api.setCameraLookAt([0, -1, 1], [0, 0, .5], 2, function(err) {});
   });
 }
 

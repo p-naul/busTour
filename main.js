@@ -54,7 +54,8 @@ api.addEventListener('viewerready', () => {
             const camY = info.position3D[1];
             const camZ = info.position3D[2];
             api.setCameraLookAt([0, -1, 1], [camX, camY, camZ], 2, function(err) {}); //position cam, target,
-            if ((id == 231) || (id == 247) || (id == 293) || (id == 281) || (id == 627) || (id == 583) || (id == 605) || (id == 649) || (id == 920) || (id == 894)  ) { moveToZero(id) }
+            if ((id == 678) || (id == 168 ) || (id == 180 ) || (id == 247 ) || (id == 269 ) || (id == 291 ) || (id == 335 ) || (id == 313 ) || (id == 1024 ) || (id == 998 ) ) { moveToZero(id) }
+            if ((id == 706) || (id == 722) || (id == 714 ) ) { moveToZero(706) }
     }
     }); 
 
