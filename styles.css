@@ -12,15 +12,16 @@ body {
     text-align: center;
     font-size: 15px; */
     /* line-height: 17px; */
-    font-size: 22px;
+    font-size: 36px;
     color: white;
     font-family: Helvetica, Arial, system-ui;
     /* padding: 10px 15px 10px 15px; */
 }
 p {
-  font-size: 18px;
+  font-size: 22px;
   color: rgb(64, 206, 250);
   font-family: Helvetica, Arial, system-ui;
+  text-align: left;
 }
 
 .container{
@@ -30,14 +31,15 @@ p {
     width: 100vw; */
 }
 .col1{
-    width:280px;
+    /* width:280px; */
+    width:20%;
   }
 .col2{
-    width:10%;
+    width:60%;
     text-align: center;
 }
 .col3{
-  width:30px;
+  width:20px;
   float: left;
   /* text-align: center;
   font-size: 15px; */
@@ -50,16 +52,26 @@ p {
     /* width:calc(100%-1px); */
     width: 90%;
     /* padding: 10px; */
-    height: 1000px;
-    border: 0;
-    top: 320px;
+    top: 1100px;
+    height: 800px;
+    border: 0;    
 }
 #sectionImage {
   position: absolute;
   height: 180px;
   /* background: black; */
   text-align: center;
-  top: 50px;
+  top: 70px;
+  width: 99%;
+}
+#consigne {
+  position: absolute;
+  height: 100px;
+  /* background: black; */
+  text-align: center;
+  /* top: 230px; */
+  left: 60px;
+  top: 750px;
   width: 99%;
 }
 #cacheHaut {
@@ -67,7 +79,7 @@ p {
   height: 10px;
   /* background: black; */
   text-align: center;
-  top: 350px;
+  top: 450px;
   width: 99%;
 }
 * {
@@ -77,7 +89,7 @@ p {
 #bagniere {
   position: absolute;
   /* height: 200px; */
-  height: 50px;
+  height: 70px;
   width: 99%;
   background: black;
   text-align: center;
@@ -125,21 +137,46 @@ p {
   border: 1px solid #4c3416; 
   border-radius: 5px;
 }
-.button-container { 
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px; /* Espace entre les boutons */
-  margin-top: 50px; /* Espace pour le titre */
-}
-.button-container button {
-  flex: 1 1 auto; /* Les boutons prennent la largeur disponible */
-  outline: none;
-  border: none;
-}
+
 .title {
   position: absolute;
   top: 10px; /* Ajustez cette valeur pour décaler verticalement */
   left: 150px; /* Ajustez cette valeur pour décaler horizontalement */
   font-size: 24px;
   font-weight: bold;
+}
+
+
+
+
+
+.styled {
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 2rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 10px;
+  background-color: rgb(64, 206, 250, .8);
+  background-image: linear-gradient(
+    to top left,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2) 30%,
+    rgba(0, 0, 0, 0)
+  );
+  box-shadow:
+    inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.styled:hover {
+  background-color: rgb(0, 174, 255);
+}
+
+.styled:active {
+  box-shadow:
+    inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
 }

@@ -33,6 +33,12 @@ setInterval(function() {  // Mise à jour du timer toutes les secondes
     document.getElementById('timer').textContent = addLeadingZero(hours) + ":" + addLeadingZero(minutes) + ":" + addLeadingZero(seconds);
 }, 1000);
 
+// var btn = document.querySelector("input");
+// btn.addEventListener("click", setInterval)
+// function scenario() {
+
+// }
+
 //------------------------------------------------
 api.start(function () {
 api.addEventListener('viewerready', () => {
@@ -48,7 +54,7 @@ api.addEventListener('viewerready', () => {
             const camY = info.position3D[1];
             const camZ = info.position3D[2];
             api.setCameraLookAt([0, -1, 1], [camX, camY, camZ], 2, function(err) {}); //position cam, target,
-            if ((id == 379) || (id == 371) || (id == 245) || (id == 233) || (id == 707) || (id == 895) || (id == 851) || (id == 1225) || (id == 283) || (id == 873) || (id == 857) ) { moveToZero(id) }
+            if ((id == 231) || (id == 247) || (id == 293) || (id == 281) || (id == 627) || (id == 583) || (id == 605) || (id == 649) || (id == 920) || (id == 894)  ) { moveToZero(id) }
     }
     }); 
 
