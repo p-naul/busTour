@@ -42,11 +42,13 @@ api.addEventListener('viewerready', () => {
 
     api.addEventListener('click',function(info) { 
     if (info.instanceID) {  // le clic se fait effectivement sur un objet 
-        window.console.log('clicked node', info.instanceID);
+      const id =  info.instanceID;
+      window.console.log('clicked node', info.instanceID);
             const camX = info.position3D[0];
             const camY = info.position3D[1];
             const camZ = info.position3D[2];
             api.setCameraLookAt([0, -1, 1], [camX, camY, camZ], 2, function(err) {}); //position cam, target,
+            if ((id == 379) || (id == 371) || (id == 245) || (id == 233) || (id == 707) || (id == 895) || (id == 851) || (id == 1225) || (id == 283) || (id == 873) || (id == 857) ) { moveToZero(id) }
     }
     }); 
 
