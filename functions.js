@@ -48,6 +48,22 @@ function move(ID, TX, TY, TZ) {
   });
 }
 
+function moveToZero(ID) {
+  api.getMatrix(ID-2, function(err, matrix) {
+    window.console.log('matrix', matrix);
+    matrix.local[12]=0;
+    matrix.local[13]=0;
+    matrix.local[14]=0;
+    matrix.world[12]=0;
+    matrix.world[13]=0;
+    matrix.world[14]=0;
+    matrice = matrix.local;
+    // window.console.log('matrix', matrice);
+    api.setMatrix(ID-2, matrice, function(err, matrix) {});
+    api.setCameraLookAt([0, -1, 1], [0, 0, 0], 2, function(err) {});
+  });
+}
+
 
 function moveRotate(ID, vX1, vX2, vX3, vY1, vY2, vY3, vZ1, vZ2, vZ3, TX, TY, TZ) {
   api.getMatrix(ID, function(err, matrix) {
