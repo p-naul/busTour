@@ -17,83 +17,91 @@ client.init(uid, { autostart: 1, autospin: 0, success: success, error: error });
 // var annotInitiale = [];
 
 
-//-----------------------------------------------------------
-function dialogue1(phrase) {
-  popup1.textContent = "";
-  Go = 0;
-  const mots = phrase.split(" ");
-  let indexMot = 0;
-  const intervalId = setInterval(() => {
-    // window.console.log(indexMot, Go);
-      if (indexMot < mots.length) {
-          popup1.textContent += mots[indexMot] + " ";
-          indexMot++;
-      } else {
-          clearInterval(intervalId); // Arrête l'affichage en fin de phrase
-          setTimeout(() => { Go = 1;}, 2000);
-      }
-  }, 250); // Délai entre chaque mot (en millisecondes)
-}
-//-----------------------------------------------------------
-function move(ID, TX, TY, TZ) {
-  api.getMatrix(ID, function(err, matrix) {
-    // window.console.log('matrix', matrix);
-    matrix.local[12]=TX/1000;
-    matrix.local[13]=TZ/1000;
-    matrix.local[14]=TY/1000;
-    matrice = matrix.local;
-    // window.console.log('matrix', matrice);
-    api.setMatrix(ID, matrice, function(err, matrix) {
-    });
+var hours = 0;
+  var minutes = 0;
+  var seconds = 0;
+  var timerStarted = false;
+  var timerInterval;
+
+  function addLeadingZero(number) {
+    return number < 10 ? "0" + number : number;
+  }
+
+  function startTimer() {
+    if (!timerStarted) {
+      timerStarted = true;
+      timerInterval = setInterval(function () {
+        seconds++;
+        if (seconds == 60) {
+          minutes++;
+          seconds = 0;
+        }
+        if (minutes == 60) {
+          hours++;
+          minutes = 0;
+        }
+        document.getElementById("timer").textContent =
+          addLeadingZero(hours) +
+          ":" +
+          addLeadingZero(minutes) +
+          ":" +
+          addLeadingZero(seconds);
+      }, 1000);
+    }
+  }
+
+  function resetTimer() {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+    }
+    saveTimeToLocalStorage();
+    displayPopup();
+    hours = 0;
+    minutes = 0;
+    seconds = 0;
+    timerStarted = false;
+    document.getElementById("timer").textContent = "00:00:00";
+  }
+
+  function saveTimeToLocalStorage() {
+    const currentTime =
+      addLeadingZero(hours) +
+      ":" +
+      addLeadingZero(minutes) +
+      ":" +
+      addLeadingZero(seconds);
+    let scores = JSON.parse(localStorage.getItem("timerScores")) || [];
+    scores.push(currentTime);
+    localStorage.setItem("timerScores", JSON.stringify(scores));
+  }
+
+  function displayPopup() {
+    const currentTime =
+      addLeadingZero(hours) +
+      ":" +
+      addLeadingZero(minutes) +
+      ":" +
+      addLeadingZero(seconds);
+    document.getElementById("popupTimer").textContent = currentTime;
+    document.getElementById("timerPopup").style.display = "block";
+  }
+
+  function closePopup() {
+    document.getElementById("timerPopup").style.display = "none";
+  }
+
+  document.querySelectorAll(".favorite").forEach((button) => {
+    button.addEventListener("click", startTimer);
   });
-}
 
-function moveToZero(ID) {
-  api.getMatrix(ID-2, function(err, matrix) {
-    window.console.log('matrix', matrix);
-    matrix.local[12]=0;
-    matrix.local[13]=0;
-    matrix.local[14]=0;
-    matrix.world[12]=0;
-    matrix.world[13]=0;
-    matrix.world[14]=0;
-    matrice = matrix.local;
-    // window.console.log('matrix', matrice);
-    api.setMatrix(ID-2, matrice, function(err, matrix) {});
-    api.setCameraLookAt([0, -1, 1], [0, 0, .5], 2, function(err) {});
-  });
-}
+  // document.getElementById("resetButton").addEventListener("click", resetTimer);
+  // document.getElementById("closePopup").addEventListener("click", closePopup);
 
-
-function moveRotate(ID, vX1, vX2, vX3, vY1, vY2, vY3, vZ1, vZ2, vZ3, TX, TY, TZ) {
-  api.getMatrix(ID, function(err, matrix) {
-    // window.console.log('matrix', matrix);
-    matrix.local[0]=vX1;
-    matrix.local[1]=vX2;
-    matrix.local[2]=vX3;
-    matrix.local[4]=vY1;
-    matrix.local[5]=vY2;
-    matrix.local[6]=vY3;
-    matrix.local[8]=vZ1;
-    matrix.local[9]=vZ2;
-    matrix.local[10]=vZ3;
-    matrix.local[12]=TX/1000;
-    matrix.local[13]=TZ/1000;
-    matrix.local[14]=TY/1000;
-    matrice = matrix.local;
-    // window.console.log('matrix', matrice);
-    api.setMatrix(ID, matrice, function(err, matrix) {
-    });
-  });
-}
-//-----------------------------------------------------------
-function changerModeleSketchfab(nouvelIdentifiant) {
-  // const iframe = document.getElementById('votre-iframe-id'); // Remplacez 'votre-iframe-id' par l'ID de votre balise <iframe>
-  const nouvelleURL = `https://sketchfab.com/models/${nouvelIdentifiant}/embed`;
-  iframe.src = nouvelleURL;
-}
-
-
+  window.onclick = function (event) {
+    if (event.target == document.getElementById("timerPopup")) {
+      closePopup();
+    }
+  };
 
 function computePastilles(wCanvas, hCanvas, bgColor, bgBorderColor, fgColor, fgBorderColor, text, numHotspot, wPastille, hPastille) {
   var wSize = wPastille / 10.0;
@@ -146,17 +154,19 @@ function getNewPastilleURL(bgColor, bgBorderColor, fgColor, fgBorderColor, text,
   return imageData;
 }
 
+
+
 client.init(uid, {
-annotation: 0, // Usage: Setting to [1 – 100] will automatically load that annotation when the viewer starts.
-annotations_visible: 1, // Usage: Setting to 0 will hide annotations by default.
+// annotation: 0, // Usage: Setting to [1 – 100] will automatically load that annotation when the viewer starts.
+// annotations_visible: 1, // Usage: Setting to 0 will hide annotations by default.
 //   annotation_cycle: 0, // Déroule les annotations avec le nombre de secondes indiquées.
 autospin: 0, // Usage: Setting to any other number will cause the model to automatically spin around the z-axis after loading.
 autostart: 1, // Usage: Setting to 1 will make the model load immediately once the page is ready, rather than waiting for a user to click the Play button.
 camera: 1, // Usage: Setting to 0 will skip the initial animation that occurs when a model is loaded, and immediately show the model in its default position.
 ui_stop: 0, // Usage: Setting to 0 will hide the "Disable Viewer" button in the top right so that users cannot stop the 3D render once it is started.
-transparent: 1, // Usage: Setting to 1 will make the model's background transparent
-ui_animations: 1, // Usage: Setting to 0 will hide the animation menu and timeline.
-ui_annotations: 1, // Usage: Setting to 0 will hide the Annotation menu.
+transparent: 0, // Usage: Setting to 1 will make the model's background transparent
+ui_animations: 0, // Usage: Setting to 0 will hide the animation menu and timeline.
+ui_annotations: 0, // Usage: Setting to 0 will hide the Annotation menu.
 ui_controls: 1, // Usage: Setting to 0 will hide all the viewer controls at the bottom of the viewer (Help, Settings, Inspector, VR, Fullscreen, Annotations, and Animations).
 ui_fullscreen: 0, // Usage: Setting to 0 will hide the Fullscreen button.
 ui_general_controls: 1, // Usage: Setting to 0 will hide main control buttons in the bottom right of the viewer (Help, Settings, Inspector, VR, Fullscreen).
