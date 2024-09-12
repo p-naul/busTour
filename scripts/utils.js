@@ -50,5 +50,5 @@ function showBanner(isCorrect) {
     bannerText.style.visibility = "hidden";
     // banner.style.backgroundColor = "transparent";
     banner.style.backgroundColor = "rgba(60,179,113, .1)" ;
-  }, 30000); // Adjust timing as needed
+  }, 3000); // Adjust timing as needed
 }

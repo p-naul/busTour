@@ -142,17 +142,24 @@ const obj = [ //ID selectionnable, ID ref, XYZ ref, famille
 //-----------------------------------------------------------------------------------------------------------------------
 for (let s = 0; s < obj.length; s++) {
   var nom = obj[s][0];
-  nom = nom.slice(0, 4);   
-  if ((nom == 'A2-0') || (nom == 'A2-1') || (nom == 'A2-3')) {  Scenario_1_A2.push(obj[s][4])  };
-  if ((nom == 'A3-0') || (nom == 'A3-1') || (nom == 'A3-3')) {  Scenario_2_A3.push(obj[s][4])  };
-  if ((nom == 'A1-0') || (nom == 'A1-1') || (nom == 'A1-3')) {  Scenario_3_A1.push(obj[s][4])  };
+  // nom = nom.slice(0, 4);   
+  // if ((nom == 'A2-0') || (nom == 'A2-1') || (nom == 'A2-3')) {  Scenario_1_A2.push(obj[s][4])  };
+  // if ((nom == 'A3-0') || (nom == 'A3-1') || (nom == 'A3-3')) {  Scenario_2_A3.push(obj[s][4])  };
+  // if ((nom == 'A1-0') || (nom == 'A1-1') || (nom == 'A1-3')) {  Scenario_3_A1.push(obj[s][4])  };
+  nom = nom.slice(0, 3);   
+  if (nom == 'A2-') {  Scenario_1_A2.push(obj[s][4])  };
+  if (nom == 'A3-'){  Scenario_2_A3.push(obj[s][4])  };
+  if (nom == 'A1-') {  Scenario_3_A1.push(obj[s][4])  };
 };
+
 const scenario = getScenario();
 console.log("Scenario sélectionné :", scenario);
 if (scenario == 1) { consigne = Scenario_1_A2};
 if (scenario == 2) { consigne = Scenario_2_A3};
 if (scenario == 3) { consigne = Scenario_3_A1};
-console.log(Scenario_1_A2, Scenario_2_A3, Scenario_3_A1);
+consigne.sort();
+// window.console.log("consigne :", consigne)
+// console.log(Scenario_1_A2, Scenario_2_A3, Scenario_3_A1);
 
 //-----------------------------------------------------------------------------------------------------------------------
 function openPopup() { // Fonction pour ouvrir le popup
@@ -164,15 +171,6 @@ function closePopup() {  // Fonction pour fermer le popup
   popup.style.display = "none";
 }
 //-----------------------------------------------------------------------------------------------------------------------
-
-
-
-// for (let i = 0; i < ObjetsScenario.length; i++) {
-//   if (scenario == ObjetsScenario[i][0]) {
-//     totalConsigne = consigne.push(ObjetsScenario[i][1]); 
-//   };
-// };
-window.console.log("consigne :", consigne)
 // if (scenario == "1") {
 //   console.log("Scenario 1")
 
@@ -247,7 +245,7 @@ const success = (apiClient) => {
                     };
                     for (let j = 0; j < 4; j++) { lastFaceAvant[j] = obj[i][j+1] }; 
                   };
-                  window.console.log("objets sur la table :", tableAssy);
+                  // window.console.log("objets sur la table :", tableAssy);
                 };
               };
               // api.setCameraLookAt([0, -1, .7], [0, -.2, .3], 4.3, function(err) {}); //setCameraLookAt( position, target, [duration], [callback] )
@@ -257,16 +255,17 @@ const success = (apiClient) => {
           
           //----------------------------------------------------------------------------------------------------------------------- 
           if (info.instanceID == 1633) { //clic sur le buzzer => vérification de la correspondance entre les objets sur table et la consigne
-            // window.console.log("objets sur la table :", tableAssy)
-            // window.console.log("consigne :", consigne)
+            tableAssy.sort();            
+            window.console.log("objets sur la table :", tableAssy)
+            window.console.log("consigne :", consigne)
             sontEgaux = consigne.length ===
              tableAssy.length && consigne.every((valeur, index) => valeur === tableAssy[index]);
-            if (sontEgaux == true) {
+             if (sontEgaux == true) {
               showBanner(true)
               resussite = 1;
               api.hide(1633-2); //cache le buzzer
             } else {showBanner(false)}
-          }
+          };
           //----------------------------------------------------------------------------------------------------------------------- 
           if (info.instanceID == 1662) { //clic sur le bouton solution => affiche la solution en 3D sur la table 
             resussite = 1;
