@@ -36,7 +36,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 10px;
 }
 
 .mission-title {
@@ -199,7 +199,7 @@ ul ul li span.material-symbols-outlined {
   width: 100%;
   /* padding: 10px; */
   top: 0px;
-  height: 800px;
+  height: 600px;
   border: 0;
 }
 
