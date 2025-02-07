@@ -6,9 +6,6 @@ let api;
 // const uid = "cb264ca05beb4abfb696514612734112"; //busTour8 FR
 const uid = "6fc502477c6047fe9d20653ab6c7d619"; //busTour8 EN
 
-
-
-
 var sontEgaux = false;
 var assyBoitier = 0;
 var lastBoitier = [0, 0, 0, 0];
@@ -159,10 +156,6 @@ const obj = [ //ID selectionnable, ID ref, XYZ ref, famille
 //-----------------------------------------------------------------------------------------------------------------------
 for (let s = 0; s < obj.length; s++) {
   var nom = obj[s][0];
-  // nom = nom.slice(0, 4);   
-  // if ((nom == 'A2-0') || (nom == 'A2-1') || (nom == 'A2-3')) {  Scenario_1_A2.push(obj[s][4])  };
-  // if ((nom == 'A3-0') || (nom == 'A3-1') || (nom == 'A3-3')) {  Scenario_2_A3.push(obj[s][4])  };
-  // if ((nom == 'A1-0') || (nom == 'A1-1') || (nom == 'A1-3')) {  Scenario_3_A1.push(obj[s][4])  };
   nom = nom.slice(0, 3);   
   if (nom == 'A2-') {  Scenario_1_A2.push(obj[s][4])  };
   if (nom == 'A3-'){  Scenario_2_A3.push(obj[s][4])  };
@@ -189,16 +182,6 @@ function closePopup() {  // Fonction pour fermer le popup
   popup.style.display = "none";
 }
 //-----------------------------------------------------------------------------------------------------------------------
-// if (scenario == "1") {
-//   console.log("Scenario 1")
-
-// } else if (scenario == "2") {
-//   console.log("Scenario 2")
-// } else if (scenario == "3") {
-//   console.log("Scenario 3")
-// } else {
-//   console.log("Pas de scenario")
-// };
 function getScenario() {
   const params = new URLSearchParams(window.location.search);
   return params.get("scenario");
@@ -278,15 +261,10 @@ const success = (apiClient) => {
             };
 
           };
-          
-          // if (info.instanceID == 1633) { //clic sur le buzzer => vérification de la correspondance entre les objets sur table et la consigne
-          // };
-          // if (info.instanceID == 1679) { //clic sur le bouton solution => affiche la solution en 3D sur la table 
-          // }
         }
       }); 
-      api.hide(1633, function(err, translateTo) {});
-      api.hide(1679, function(err, translateTo) {});
+      api.hide(1633, function(err, translateTo) {}); //buzzer
+      api.hide(1679, function(err, translateTo) {}); //bouton solution
       //-----------------------------------------------------------------------------------------------------------------------
       document.getElementById("solution").addEventListener("input", function(){ //au curseur, assemble au centre
         sliderSolution = document.getElementById("solution").value;
@@ -295,13 +273,13 @@ const success = (apiClient) => {
           api.translate(obj[i][4]-2, [obj[i][1], obj[i][2], obj[i][3]], {duration: .2, easing: 'easeOutQuad'}, function(err, translateTo) {});
           tableAssy.splice(0, tableAssy.length);
         };
-        // puis la recharge avec la selection du slider
-        // if (scenario == 1) { consigne = Scenario_1_A2};
-        // if (scenario == 2) { consigne = Scenario_2_A3};
-        // if (scenario == 3) { consigne = Scenario_3_A1};
+
         if (sliderSolution == 1) {
           api.setCameraLookAt([0, -.5, .6], [0, -.2, .4], 1, function(err) {
             if (!err) {window.console.log('Camera moved');}
+          });
+          api.unselectAnnotation(0, function(err) {
+            if (!err) {window.console.log('unselectAnnotation');}
           });
           for (let j = 0; j < Scenario_1_A2.length; j++) {
             // window.console.log(Scenario_1_A2[j])
@@ -318,6 +296,9 @@ const success = (apiClient) => {
           api.setCameraLookAt([0, -.5, .6], [0, -.2, .4], 1, function(err) {
             if (!err) {window.console.log('Camera moved');}
           });
+          api.unselectAnnotation(0, function(err) {
+            if (!err) {window.console.log('unselectAnnotation');}
+          });
           for (let j = 0; j < Scenario_2_A3.length; j++) {
             for (let i = 0; i < obj.length; i++) {
               if (obj[i][4] == Scenario_2_A3[j]) {
@@ -330,6 +311,9 @@ const success = (apiClient) => {
         if (sliderSolution == 3) {
           api.setCameraLookAt([0, -.5, .6], [0, -.2, .4], 1, function(err) {
             if (!err) {window.console.log('Camera moved');}
+          });
+          api.unselectAnnotation(0, function(err) {
+            if (!err) {window.console.log('unselectAnnotation');}
           });
           for (let j = 0; j < Scenario_3_A1.length; j++) {
             for (let i = 0; i < obj.length; i++) {
