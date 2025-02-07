@@ -159,7 +159,7 @@ function getNewPastilleURL(bgColor, bgBorderColor, fgColor, fgBorderColor, text,
 client.init(uid, {
 // annotation: 0, // Usage: Setting to [1 – 100] will automatically load that annotation when the viewer starts.
 // annotations_visible: 1, // Usage: Setting to 0 will hide annotations by default.
-//   annotation_cycle: 0, // Déroule les annotations avec le nombre de secondes indiquées.
+annotation_cycle: 4, // Déroule les annotations avec le nombre de secondes indiquées.
 autospin: 0, // Usage: Setting to any other number will cause the model to automatically spin around the z-axis after loading.
 autostart: 1, // Usage: Setting to 1 will make the model load immediately once the page is ready, rather than waiting for a user to click the Play button.
 camera: 1, // Usage: Setting to 0 will skip the initial animation that occurs when a model is loaded, and immediately show the model in its default position.
@@ -169,7 +169,7 @@ ui_animations: 0, // Usage: Setting to 0 will hide the animation menu and timeli
 ui_annotations: 0, // Usage: Setting to 0 will hide the Annotation menu.
 ui_controls: 1, // Usage: Setting to 0 will hide all the viewer controls at the bottom of the viewer (Help, Settings, Inspector, VR, Fullscreen, Annotations, and Animations).
 ui_fullscreen: 0, // Usage: Setting to 0 will hide the Fullscreen button.
-ui_general_controls: 1, // Usage: Setting to 0 will hide main control buttons in the bottom right of the viewer (Help, Settings, Inspector, VR, Fullscreen).
+ui_general_controls: 0, // Usage: Setting to 0 will hide main control buttons in the bottom right of the viewer (Help, Settings, Inspector, VR, Fullscreen).
 ui_help: 1, // Usage: Setting to 0 will hide the Help button.
 ui_hint: 0, // Usage: Setting to 0 will always hide the viewer hint animation ("click & hold to rotate"). Setting to 1 will show the hint the first time per browser session (using a cookie). Setting to 2 will always show the hint.
 ui_infos: 0, // Usage: Setting to 0 will hide the model info bar at the top of the viewer. Share sign etc.
