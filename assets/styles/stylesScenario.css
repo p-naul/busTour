@@ -84,6 +84,19 @@ a {
   height: 40px;
 }
 
+<<<<<<< HEAD
+=======
+.mission-bar {
+  background-color: #007eb5;
+  height: 75px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+>>>>>>> f640c3fa1505c33a267e83b7d0979db562e001ea
 .mission-title {
   font-size: 16px;
   color: white;
@@ -219,6 +232,21 @@ ul ul li span.material-symbols-outlined {
   width: 100%;
 }
 
+<<<<<<< HEAD
+=======
+#api-frame {
+  display: block;
+  /* left: 0px; */
+  left: 20%;
+  /* width:calc(100%-1px); */
+  width: 100%;
+  /* padding: 10px; */
+  top: 0px;
+  height: 600px;
+  border: 0;
+}
+
+>>>>>>> f640c3fa1505c33a267e83b7d0979db562e001ea
 .popup {
   display: none; /* Masqué par défaut */
   position: fixed;
